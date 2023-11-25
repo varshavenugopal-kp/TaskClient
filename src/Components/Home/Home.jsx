@@ -9,9 +9,15 @@ import { isAsyncThunkAction } from '@reduxjs/toolkit';
 import { api } from '../../Services/axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { io } from 'socket.io-client';
 
 const Home = () => {
 //   console.log(datas, "lllllllllll");
+//socket
+const socket = io('http://localhost:8000');
+
+
+
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const [addOpen, setAddOpen] = useState(false)
@@ -32,14 +38,36 @@ const handleClick = (taskId) => {
     setTaskId(taskId)
 }
 
-useEffect(()=>{
-    fetchData()
-},[])
+useEffect(() => {
+    fetchData();
+     console.log(task,"this is tasks");
+    // Listen for the 'taskAdded' event
+    socket.on('taskAdded', (data) => {
+      console.log('New task added:', data.task);
+     let newtask={
+        taskDetails:{
+            _id: data.task._id,
+            description:data.task.description,
+            date:data.task.date,
+            task:data.task.task,
+        },
+       
+     }
+      // Update your component state with the new task
+     setTasks((prevTasks) => [...prevTasks, newtask]);
+     console.log(task,"this is task in")
+    });
+
+    // Cleanup the socket event listener when the component unmounts
+    return () => {
+      socket.off('taskAdded');
+    };
+  }, []);
 
 const handledelete = async (taskId) => {
     try {
 
-        await api.delete('/delete', { id: taskId });
+        await api.post('/delete', { id: taskId });
         const updatedData = task.filter((rest) => rest.id !== taskId);
         setTasks(updatedData)
     } catch (error) {
@@ -63,18 +91,17 @@ console.log(task,"finishhhhhhhhhhhhhhhhhhhhhhhhh");
 
 
 
-const fetchData= async()=>{
+const fetchData = async () => {
     try {
-        const response = await api.get('/allTasks');
-  console.log(response.data.data,"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-        if (response.data.data) {
-            setTasks(response.data.data);
-        }
+      const response = await api.get('/allTasks');
+      console.log(response.data.data, 'Initial tasks structure');
+      if (response.data.data) {
+        setTasks(response.data.data);
+      }
     } catch (error) {
-        console.error('Error occurred while fetching data:', error);
-
+      console.error('Error occurred while fetching data:', error);
     }
-}
+  };
 const handleLogout=(e)=>{
     e.preventDefault()
     dispatch(setProfile({}))

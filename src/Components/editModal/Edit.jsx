@@ -12,7 +12,7 @@ const Edit = ({ setEditOpen,taskId }) => {
    
     const modalClose = () => {
         setEditOpen(false);
-        window.location.reload();
+      
     }
     useEffect(() => {
         fetchData()

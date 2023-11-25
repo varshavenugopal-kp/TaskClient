@@ -13,7 +13,7 @@ const Add = ({ setAddOpen }) => {
     };
     function modalClose() {
         setAddOpen(false);
-        window.location.reload();
+        // window.location.reload();
     }
     const addRest = ((e) => {
         setData({ ...pdata, [e.target.name]: e.target.value })

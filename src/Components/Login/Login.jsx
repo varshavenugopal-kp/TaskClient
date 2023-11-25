@@ -3,9 +3,13 @@ import { apiAuth } from '../../Services/axios'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setProfile } from '../../Redux/Userslice'
+import { io } from 'socket.io-client'
 
 
 const Login = () => {
+
+    const socket = io('http://localhost:8000');
+
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const [user,setUser]=useState({email:'',password:''})
@@ -19,13 +23,16 @@ const Login = () => {
         e.preventDefault()
        
           const {data}= await apiAuth.post('/login',{...user})
-          console.log(data,"ooooooooooooooooooooooooooooooooooooooo");
-         
-            
+          
+            console.log("ioioooioioioioioio",data);
           if(data){
+            console.log('Before emitting login event');
+            socket.emit('login', data._id);
+            console.log('After emitting login event');
             localStorage.setItem("userInfo", JSON.stringify(data))
             dispatch(setProfile({userid:data._id, email:data.email}))
             navigate('/');
+            
           }
           
         
