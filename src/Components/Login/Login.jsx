@@ -8,7 +8,7 @@ import { io } from 'socket.io-client'
 
 const Login = () => {
 
-    const socket = io('http://localhost:8000');
+    const socket = io(process.env.REACT_APP_BASE_URL);
 
     const dispatch=useDispatch()
     const navigate=useNavigate()
