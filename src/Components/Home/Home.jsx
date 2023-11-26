@@ -20,6 +20,7 @@ const Home = () => {
   const [isChecked, setChecked] = useState(false);
   const { userid } = useSelector((state) => state.user);
   const [value,setValue]=useState([])
+  
 
 
   const [selected,setSelected]=useState(false)
@@ -91,7 +92,7 @@ const Home = () => {
       if (response.data.data) {
         setTasks(response.data.data);
       }
-      console.log(response?.data?.data,"kkkkkkkkkkkkkk");
+      
       
     } catch (error) {
       console.error('Error occurred while fetching data:', error);
@@ -105,7 +106,7 @@ const Home = () => {
   const fetchUsers=async()=>{
     try{
       const response=await api.get(`/getUsers/${userid}`)
-      console.log(response,"responseeeeey");
+     
       setUsers(response.data.data.tasks)
     }catch(err){
       console.log(err);
@@ -131,7 +132,7 @@ const Home = () => {
 
   const setChange = async (taskId) => {
     try {
-      console.log("kkkkkkkkkkkkkkkkkkkkkkkkkk");
+     
       const { data } = await api.post('/tasks', { userid: userid, id: taskId });
       
       const updatedTasks = task.map((obj) => {
@@ -149,7 +150,8 @@ const Home = () => {
   
   const setOnChange = async (taskId) => {
     try {
-      console.log("jjjjjjjjjjjj");
+     
+      setSelected(false)
       await api.post('/unCheck', { uid: userid, id: taskId });
       
       const updatedTasks = task.map((obj) => {
@@ -166,22 +168,7 @@ const Home = () => {
   };
 
 
-  // const handleCheckboxChange = async (taskId) => {
-  //   setChecked(!isChecked);
-
-  //   // Add or remove task from the database based on checkbox state
-  //   // const endpoint = isChecked ? '/api/removeTask' : '/api/addTask';
-
-  //   try {
-  //     const response = isChecked
-  //       ? await api.post('/unCheck', { userid: userid, id: taskId })
-  //       : await api.post('/tasks', { userid: userid, id: taskId })
-
-  //     console.log(response.data,"jooooooooooooooooooooooooooyyyyyyyyyyyyyyyyyyyyyyyy"); // Handle the response as needed
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  // };
+ 
 
   return (
     <div>

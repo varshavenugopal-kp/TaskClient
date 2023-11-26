@@ -26,7 +26,7 @@ const Dashboard = () => {
     })
     const fetchData=async()=>{
       const res = await api.get(`/tasknum/${userid}`)
-      console.log(res,"kkkkkkkkkkkkkkkkkkkkkk");
+     
       if(res){
          setTasks(res.data.data)
          setCom(res.data.numberOfTasks)

@@ -20,10 +20,10 @@ const Edit = ({ setEditOpen,taskId }) => {
     const fetchData = (async () => {
        
         const response = await api.get(`/single/${taskId}`)
-        console.log("ooooooooooooooooooooooooooooooooooooooo",response);
+       
         setData(response.data.data)
     })
-   console.log("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",data);
+   
     const handleEdit = async (e) => {
         e.preventDefault();
         try {
@@ -35,7 +35,7 @@ const Edit = ({ setEditOpen,taskId }) => {
             const { data: responseData } = await api.post('/editData', { ...data, id: taskId });
 
 
-            console.log(responseData);
+          
             modalClose()
 
         } catch (error) {
