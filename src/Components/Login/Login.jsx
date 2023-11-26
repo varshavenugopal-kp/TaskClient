@@ -25,13 +25,13 @@ const Login = () => {
           const {data}= await apiAuth.post('/login',{...user})
           
             console.log("ioioooioioioioioio",data);
-          if(data){
+          if(data.token){
             console.log('Before emitting login event');
             socket.emit('login', data._id);
             console.log('After emitting login event');
             localStorage.setItem("userInfo", JSON.stringify(data))
             dispatch(setProfile({userid:data._id, email:data.email}))
-            navigate('/');
+            navigate('/dashboard');
             
           }
           

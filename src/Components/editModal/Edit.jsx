@@ -87,7 +87,7 @@ const Edit = ({ setEditOpen,taskId }) => {
             <div className='w-full mt-5'>
 
                 <div className='w-full'>
-                    <textarea name='description' className='shadow appearance-none border rounded w-full py-2 px-3 h-24' value={data?.task} onChange={addDetails}></textarea>
+                    <textarea name='description' className='shadow appearance-none border rounded w-full py-2 px-3 h-24' value={data?.description} onChange={addDetails}></textarea>
                 </div>
             </div>
 

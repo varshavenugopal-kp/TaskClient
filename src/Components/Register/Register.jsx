@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
 import { apiAuth } from '../../Services/axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Register = () => {
-
+  const navigate=useNavigate()
     const [user, setUser] = useState({ username: '', email: '', password: '' });
     const addUser=((e)=>{
         setUser({...user,[e.target.name]:e.target.value})
@@ -20,7 +21,11 @@ const Register = () => {
          
               const {data}=await apiAuth.post('/register',{...user})
               console.log(data);
-            
+            if(data){
+              navigate('/login')
+            }else{
+              navigate('/register')
+            }
           }
           catch(error){
     
