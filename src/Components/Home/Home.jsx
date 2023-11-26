@@ -10,7 +10,7 @@ import { faBookmark, faCheck, faSquareCheck, faSquareXmark, faTrashCan } from '@
 import { io } from 'socket.io-client';
 
 const Home = () => {
-  const socket = io('http://localhost:8000');
+  const socket = io(process.env.REACT_APP_BASE_URL);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [addOpen, setAddOpen] = useState(false);

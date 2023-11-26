@@ -1,12 +1,15 @@
 
 import React, { useEffect, useState } from 'react'
 import ChartData from './ChartData';
+import '../Dashboard/Dashboard.css'
 import {Chart, ArcElement,  Tooltip , BarElement, CategoryScale, LinearScale} from 'chart.js'
 import Nav from '../Nav/Nav';
 import { api } from '../../Services/axios';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate=useNavigate()
     const [taskData, setTaskData] = useState({
         completed: 10,
         overdue: 5,
@@ -29,10 +32,15 @@ const Dashboard = () => {
          setCom(res.data.numberOfTasks)
       }
     }
+    const enterHome=()=>{
+     navigate('/')
+    }
     return (
       <div>
          <Nav/>
-       <div className='p-7'>
+         <div className='items-center'>
+            <div className="card">
+         <div className='p-7'>
          {/* Other components */}
         
         <div className='pt-5'>
@@ -40,7 +48,7 @@ const Dashboard = () => {
               className='select-none rounded-lg bg-sky-950 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
               type='button'
               data-ripple-light='true'
-             
+             onClick={enterHome}
             >
               View Tasks
             </button>
@@ -51,6 +59,11 @@ const Dashboard = () => {
           <h1>Total tasks: {tasks}</h1>
         </div>
        </div>
+         </div>
+         </div>
+
+        
+      
       </div>
     );
 }
