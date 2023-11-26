@@ -185,9 +185,9 @@ const Home = () => {
 
   return (
     <div>
-      <div className='p-10'>
+      <div className='p-10 sm:mt-10'>
         <div className='flex justify-between'>
-          <div className='p-6 pt-0'>
+          <div className='lg:p-6 pt-0'>
             <button
               className='select-none rounded-lg bg-sky-950 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
               type='button'
@@ -212,7 +212,7 @@ const Home = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-6 gap-8'>
           {task?.map((item) => (
             <div
-              className='relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border'
+              className='relative flex flex-col text-gray-700 bg-white shadow-md lg:w-96 sm:w-80  rounded-xl bg-clip-border'
               key={item?.taskDetails?._id}
             >
               <div className='p-6'>

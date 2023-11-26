@@ -37,12 +37,23 @@ const Dashboard = () => {
     }
     return (
       <div>
-         <Nav/>
-         <div className='items-center'>
+        <div className='bgcolor'>
+        <Nav/>
+         <div className='items-center flex justify-center h-screen'>
             <div className="card">
          <div className='p-7'>
          {/* Other components */}
         
+        
+        <div className='items-center flex justify-center'>
+        <ChartData completed={com} overdue={tasks} />
+        </div>
+        <div className='flex justify-between'>
+       
+          <div>
+          <h1>Completed tasks: {com}</h1>
+          <h1>Total tasks: {tasks}</h1>
+        </div>
         <div className='pt-5'>
         <button
               className='select-none rounded-lg bg-sky-950 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
@@ -53,15 +64,15 @@ const Dashboard = () => {
               View Tasks
             </button>
         </div>
-        <ChartData completed={com} overdue={tasks} />
-        <div>
-          <h1>Completed tasks: {com}</h1>
-          <h1>Total tasks: {tasks}</h1>
         </div>
+       
+        
        </div>
          </div>
          </div>
 
+        </div>
+        
         
       
       </div>

@@ -2,7 +2,10 @@
     width: 600px;
     height: 600px;
     border-radius: 30px;
-    background: #e0e0e0;
-    box-shadow: 10px 10px 25px #bebebe,
-               -15px -15px 30px #ffffff;
+    background: #eaeaea;
+    box-shadow: 12px 12px 18px #bebebe,
+               -10px -10px 15px #ffffffe2;
+  }
+  .bgcolor{
+    background-color: #dad3d3;
   }

@@ -24,7 +24,7 @@ const Login = () => {
        
           const {data}= await apiAuth.post('/login',{...user})
           
-            console.log("ioioooioioioioioio",data);
+            console.log(data);
           if(data.token){
             console.log('Before emitting login event');
             socket.emit('login', data._id);

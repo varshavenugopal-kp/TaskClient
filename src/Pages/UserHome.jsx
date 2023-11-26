@@ -6,7 +6,10 @@ const UserHome = () => {
   return (
     <div>
       <Nav/>
+      <div className='sm:pt-5'>
       <Home/>
+      </div>
+      
     </div>
   )
 }

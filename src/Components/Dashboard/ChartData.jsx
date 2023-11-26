@@ -35,10 +35,10 @@ const TaskStatistics = ({ completed, overdue }) => {
   return (
     <div>
      <div>
-                <h1 className='text-2xl font-bold text-red-950 items-center pt-3'>TASK COMPLETION CHART</h1>
+                <h1 className='md:text-2xl sm:text-xl font-bold text-sky-950 items-center px-8 pt-3'>TASK COMPLETION CHART</h1>
             </div>
    
-    <div className='h-96 w-96 pt-5'>
+    <div className='lg:h-96 lg:w-96 pt-5 sm:h-40 sm:w-40 md:h-80 md:w-80 md:px-2'>
     <Doughnut data={data} options={options}/>
     </div>
    
